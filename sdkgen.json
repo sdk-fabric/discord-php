@@ -1,0 +1,9 @@
+{
+  "type": "client-php",
+  "require": {
+    "sdkfabric/discord": {
+      "target": "./src",
+      "namespace": "SdkFabric\Discord"
+    }
+  }
+}

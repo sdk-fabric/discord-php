@@ -1,0 +1,17 @@
+{
+  "name": "sdkfabric/discord",
+  "description": "Discord PHP SDK managed by SDK Fabric",
+  "homepage": "https://sdk-fabric.org",
+  "license": "MIT",
+  "require": {
+    "sdkgen/client": "^1.0"
+  },
+  "require-dev": {
+    "vimeo/psalm": "^5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SdkFarbic\\SdkFabric\\Discord\\": "src/"
+    }
+  }
+}
