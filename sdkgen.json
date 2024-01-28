@@ -3,7 +3,7 @@
   "require": {
     "sdkfabric/discord": {
       "target": "./src",
-      "namespace": "SdkFabric\Discord"
+      "namespace": "SdkFabric\\Discord"
     }
   }
 }
