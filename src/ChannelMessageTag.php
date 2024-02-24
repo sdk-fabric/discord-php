@@ -14,6 +14,51 @@ use Sdkgen\Client\TagAbstract;
 class ChannelMessageTag extends TagAbstract
 {
     /**
+     * Retrieves the messages in a channel
+     *
+     * @param string $channelId
+     * @param string|null $around
+     * @param string|null $before
+     * @param string|null $after
+     * @param int|null $limit
+     * @return Message
+     * @throws ClientException
+     */
+    public function getAll(string $channelId, ?string $around = null, ?string $before = null, ?string $after = null, ?int $limit = null): Message
+    {
+        $url = $this->parser->url('/channels/:channel_id/messages', [
+            'channel_id' => $channelId,
+        ]);
+
+        $options = [
+            'query' => $this->parser->query([
+                'around' => $around,
+                'before' => $before,
+                'after' => $after,
+                'limit' => $limit,
+            ]),
+        ];
+
+        try {
+            $response = $this->httpClient->request('GET', $url, $options);
+            $data = (string) $response->getBody();
+
+            return $this->parser->parse($data, Message::class);
+        } catch (ClientException $e) {
+            throw $e;
+        } catch (BadResponseException $e) {
+            $data = (string) $e->getResponse()->getBody();
+
+            switch ($e->getResponse()->getStatusCode()) {
+                default:
+                    throw new UnknownStatusCodeException('The server returned an unknown status code');
+            }
+        } catch (\Throwable $e) {
+            throw new ClientException('An unknown error occurred: ' . $e->getMessage());
+        }
+    }
+
+    /**
      * Retrieves a specific message in the channel. Returns a message object on success.
      *
      * @param string $channelId
