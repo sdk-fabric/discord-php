@@ -21,10 +21,10 @@ class ChannelMessageTag extends TagAbstract
      * @param string|null $before
      * @param string|null $after
      * @param int|null $limit
-     * @return Message
+     * @return array<Message>
      * @throws ClientException
      */
-    public function getAll(string $channelId, ?string $around = null, ?string $before = null, ?string $after = null, ?int $limit = null): Message
+    public function getAll(string $channelId, ?string $around = null, ?string $before = null, ?string $after = null, ?int $limit = null): array
     {
         $url = $this->parser->url('/channels/:channel_id/messages', [
             'channel_id' => $channelId,
@@ -43,7 +43,7 @@ class ChannelMessageTag extends TagAbstract
             $response = $this->httpClient->request('GET', $url, $options);
             $data = (string) $response->getBody();
 
-            return $this->parser->parse($data, Message::class);
+            return $this->parser->parse($data, Message::class, isArray: true);
         } catch (ClientException $e) {
             throw $e;
         } catch (BadResponseException $e) {
