@@ -14,7 +14,7 @@ use Sdkgen\Client\TagAbstract;
 class ChannelMessageTag extends TagAbstract
 {
     /**
-     * Retrieves the messages in a channel
+     * Retrieves the messages in a channel.
      *
      * @param string $channelId
      * @param string|null $around
