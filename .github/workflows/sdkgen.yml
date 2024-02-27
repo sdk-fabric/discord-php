@@ -1,6 +1,13 @@
 name: SDKgen
 on:
-  - workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      typehub_message:
+        required: false
+      typehub_version:
+        required: false
+      typehub_changelog:
+        required: false
 permissions:
   contents: 'write'
 jobs:
