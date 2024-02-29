@@ -135,6 +135,47 @@ class ChannelMessageTag extends TagAbstract
     }
 
     /**
+     * Edit a previously sent message. The fields content, embeds, and flags can be edited by the original message author. Other users can only edit flags and only if they have the MANAGE_MESSAGES permission in the corresponding channel. When specifying flags, ensure to include all previously set flags/bits in addition to ones that you are modifying. Only flags documented in the table below may be modified by users (unsupported flag changes are currently ignored without error).
+     *
+     * @param string $channelId
+     * @param string $messageId
+     * @param Message $payload
+     * @return Message
+     * @throws ClientException
+     */
+    public function update(string $channelId, string $messageId, Message $payload): Message
+    {
+        $url = $this->parser->url('/channels/:channel_id/messages/:message_id', [
+            'channel_id' => $channelId,
+            'message_id' => $messageId,
+        ]);
+
+        $options = [
+            'query' => $this->parser->query([
+            ]),
+            'json' => $payload
+        ];
+
+        try {
+            $response = $this->httpClient->request('PATCH', $url, $options);
+            $data = (string) $response->getBody();
+
+            return $this->parser->parse($data, Message::class);
+        } catch (ClientException $e) {
+            throw $e;
+        } catch (BadResponseException $e) {
+            $data = (string) $e->getResponse()->getBody();
+
+            switch ($e->getResponse()->getStatusCode()) {
+                default:
+                    throw new UnknownStatusCodeException('The server returned an unknown status code');
+            }
+        } catch (\Throwable $e) {
+            throw new ClientException('An unknown error occurred: ' . $e->getMessage());
+        }
+    }
+
+    /**
      * Delete a message. If operating on a guild channel and trying to delete a message that was not sent by the current user, this endpoint requires the MANAGE_MESSAGES permission.
      *
      * @param string $channelId
