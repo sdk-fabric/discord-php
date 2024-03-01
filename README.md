@@ -24,7 +24,7 @@ The following example shows how you can use the client:
 require __DIR__ . '/vendor/autoload.php';
 
 $credentials = new \Sdkgen\Client\Credentials\HttpBearer('[access_token]');
-$client = new \SdkFabric\SdkFabric\Discord\Client::build($credentials);
+$client = new \SdkFabric\Discord\Client::build($credentials);
 
 // @TODO use the client
 
