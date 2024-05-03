@@ -36,6 +36,7 @@ class ChannelMessageTag extends TagAbstract
                 'before' => $before,
                 'after' => $after,
                 'limit' => $limit,
+            ], [
             ]),
         ];
 
@@ -75,6 +76,7 @@ class ChannelMessageTag extends TagAbstract
 
         $options = [
             'query' => $this->parser->query([
+            ], [
             ]),
         ];
 
@@ -101,10 +103,11 @@ class ChannelMessageTag extends TagAbstract
      * Post a message to a guild text or DM channel. Returns a message object. Fires a Message Create Gateway event. See message formatting for more information on how to properly format messages.
      *
      * @param string $channelId
+     * @param Message $payload
      * @return Message
      * @throws ClientException
      */
-    public function create(string $channelId): Message
+    public function create(string $channelId, Message $payload): Message
     {
         $url = $this->parser->url('/channels/:channel_id/messages', [
             'channel_id' => $channelId,
@@ -112,7 +115,9 @@ class ChannelMessageTag extends TagAbstract
 
         $options = [
             'query' => $this->parser->query([
+            ], [
             ]),
+            'json' => $payload
         ];
 
         try {
@@ -152,6 +157,7 @@ class ChannelMessageTag extends TagAbstract
 
         $options = [
             'query' => $this->parser->query([
+            ], [
             ]),
             'json' => $payload
         ];
@@ -192,6 +198,7 @@ class ChannelMessageTag extends TagAbstract
 
         $options = [
             'query' => $this->parser->query([
+            ], [
             ]),
         ];
 
@@ -230,6 +237,7 @@ class ChannelMessageTag extends TagAbstract
 
         $options = [
             'query' => $this->parser->query([
+            ], [
             ]),
         ];
 
