@@ -29,6 +29,11 @@ class Message implements \JsonSerializable, \PSX\Record\RecordableInterface
     #[Key('message_reference')]
     #[Description('')]
     protected ?string $messageReference = null;
+    #[Description('')]
+    protected ?int $flags = null;
+    #[Key('enforce_nonce')]
+    #[Description('')]
+    protected ?bool $enforceNonce = null;
     public function setContent(?string $content) : void
     {
         $this->content = $content;
@@ -83,6 +88,22 @@ class Message implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->messageReference;
     }
+    public function setFlags(?int $flags) : void
+    {
+        $this->flags = $flags;
+    }
+    public function getFlags() : ?int
+    {
+        return $this->flags;
+    }
+    public function setEnforceNonce(?bool $enforceNonce) : void
+    {
+        $this->enforceNonce = $enforceNonce;
+    }
+    public function getEnforceNonce() : ?bool
+    {
+        return $this->enforceNonce;
+    }
     public function toRecord() : \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
@@ -93,6 +114,8 @@ class Message implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('embeds', $this->embeds);
         $record->put('allowed_mentions', $this->allowedMentions);
         $record->put('message_reference', $this->messageReference);
+        $record->put('flags', $this->flags);
+        $record->put('enforce_nonce', $this->enforceNonce);
         return $record;
     }
     public function jsonSerialize() : object
