@@ -21,5 +21,43 @@ class ChannelTag extends TagAbstract
         );
     }
 
+    /**
+     * Pin a message in a channel. Requires the MANAGE_MESSAGES permission. Returns a 204 empty response on success. Fires a Channel Pins Update Gateway event.
+     *
+     * @param string $channelId
+     * @return array<Message>
+     * @throws ClientException
+     */
+    public function getPins(string $channelId): array
+    {
+        $url = $this->parser->url('/channels/:channel_id/pins', [
+            'channel_id' => $channelId,
+        ]);
+
+        $options = [
+            'query' => $this->parser->query([
+            ], [
+            ]),
+        ];
+
+        try {
+            $response = $this->httpClient->request('GET', $url, $options);
+            $data = (string) $response->getBody();
+
+            return $this->parser->parse($data, Message::class, isArray: true);
+        } catch (ClientException $e) {
+            throw $e;
+        } catch (BadResponseException $e) {
+            $data = (string) $e->getResponse()->getBody();
+
+            switch ($e->getResponse()->getStatusCode()) {
+                default:
+                    throw new UnknownStatusCodeException('The server returned an unknown status code');
+            }
+        } catch (\Throwable $e) {
+            throw new ClientException('An unknown error occurred: ' . $e->getMessage());
+        }
+    }
+
 
 }
