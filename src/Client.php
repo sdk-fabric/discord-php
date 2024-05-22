@@ -26,8 +26,8 @@ class Client extends ClientAbstract
 
 
 
-    public static function build(string $clientId, string $clientSecret, ?TokenStoreInterface $tokenStore = null, ?array $scopes = null): self
+    public static function build(string $token): self
     {
-        return new self('https://discord.com/api/v10', new Credentials\OAuth2($clientId, $clientSecret, 'https://discord.com/api/oauth2/token', 'https://discord.com/oauth2/authorize', $tokenStore, $scopes));
+        return new self('https://discord.com/api/v10', new Credentials\HttpBearer($token));
     }
 }

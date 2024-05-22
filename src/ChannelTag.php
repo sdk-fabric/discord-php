@@ -21,6 +21,14 @@ class ChannelTag extends TagAbstract
         );
     }
 
+    public function reaction(): ChannelReactionTag
+    {
+        return new ChannelReactionTag(
+            $this->httpClient,
+            $this->parser
+        );
+    }
+
     /**
      * Get a channel by ID. Returns a channel object.
      *
