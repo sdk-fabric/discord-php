@@ -11,7 +11,7 @@
   },
   "autoload": {
     "psr-4": {
-      "SdkFarbic\\SdkFabric\\Discord\\": "src/"
+      "SdkFabric\\Discord\\": "src/"
     }
   }
 }
