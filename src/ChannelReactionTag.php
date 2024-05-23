@@ -59,5 +59,42 @@ class ChannelReactionTag extends TagAbstract
         }
     }
 
+    /**
+     * @param string $channelId
+     * @param string $messageId
+     * @return void
+     * @throws ClientException
+     */
+    public function deleteAll(string $channelId, string $messageId): void
+    {
+        $url = $this->parser->url('/channels/:channel_id/messages/:message_id/reactions', [
+            'channel_id' => $channelId,
+            'message_id' => $messageId,
+        ]);
+
+        $options = [
+            'query' => $this->parser->query([
+            ], [
+            ]),
+        ];
+
+        try {
+            $response = $this->httpClient->request('DELETE', $url, $options);
+            $data = (string) $response->getBody();
+
+        } catch (ClientException $e) {
+            throw $e;
+        } catch (BadResponseException $e) {
+            $data = (string) $e->getResponse()->getBody();
+
+            switch ($e->getResponse()->getStatusCode()) {
+                default:
+                    throw new UnknownStatusCodeException('The server returned an unknown status code');
+            }
+        } catch (\Throwable $e) {
+            throw new ClientException('An unknown error occurred: ' . $e->getMessage());
+        }
+    }
+
 
 }
