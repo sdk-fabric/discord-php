@@ -4,7 +4,7 @@
   "homepage": "https://sdk-fabric.org",
   "license": "MIT",
   "require": {
-    "sdkgen/client": "^1.0"
+    "sdkgen/client": "^2.0"
   },
   "require-dev": {
     "vimeo/psalm": "^5.0"
