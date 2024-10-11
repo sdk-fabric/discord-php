@@ -21,6 +21,7 @@ class ChannelReactionTag extends TagAbstract
      * @param string|null $after
      * @param int|null $limit
      * @return array<User>
+     * @throws ErrorException
      * @throws ClientException
      */
     public function getAll(string $channelId, string $messageId, string $emoji, ?int $type = null, ?string $after = null, ?int $limit = null): array
@@ -51,6 +52,12 @@ class ChannelReactionTag extends TagAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
+                case 400:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 404:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 500:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
                 default:
                     throw new UnknownStatusCodeException('The server returned an unknown status code');
             }
@@ -63,6 +70,7 @@ class ChannelReactionTag extends TagAbstract
      * @param string $channelId
      * @param string $messageId
      * @return void
+     * @throws ErrorException
      * @throws ClientException
      */
     public function deleteAll(string $channelId, string $messageId): void
@@ -88,6 +96,12 @@ class ChannelReactionTag extends TagAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
+                case 400:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 404:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 500:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
                 default:
                     throw new UnknownStatusCodeException('The server returned an unknown status code');
             }

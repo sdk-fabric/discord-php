@@ -22,6 +22,7 @@ class ChannelMessageTag extends TagAbstract
      * @param string|null $after
      * @param int|null $limit
      * @return array<Message>
+     * @throws ErrorException
      * @throws ClientException
      */
     public function getAll(string $channelId, ?string $around = null, ?string $before = null, ?string $after = null, ?int $limit = null): array
@@ -51,6 +52,12 @@ class ChannelMessageTag extends TagAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
+                case 400:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 404:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 500:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
                 default:
                     throw new UnknownStatusCodeException('The server returned an unknown status code');
             }
@@ -65,6 +72,7 @@ class ChannelMessageTag extends TagAbstract
      * @param string $channelId
      * @param string $messageId
      * @return Message
+     * @throws ErrorException
      * @throws ClientException
      */
     public function get(string $channelId, string $messageId): Message
@@ -91,6 +99,12 @@ class ChannelMessageTag extends TagAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
+                case 400:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 404:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 500:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
                 default:
                     throw new UnknownStatusCodeException('The server returned an unknown status code');
             }
@@ -105,6 +119,7 @@ class ChannelMessageTag extends TagAbstract
      * @param string $channelId
      * @param Message $payload
      * @return Message
+     * @throws ErrorException
      * @throws ClientException
      */
     public function create(string $channelId, Message $payload): Message
@@ -131,6 +146,12 @@ class ChannelMessageTag extends TagAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
+                case 400:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 404:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 500:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
                 default:
                     throw new UnknownStatusCodeException('The server returned an unknown status code');
             }
@@ -146,6 +167,7 @@ class ChannelMessageTag extends TagAbstract
      * @param string $messageId
      * @param Message $payload
      * @return Message
+     * @throws ErrorException
      * @throws ClientException
      */
     public function update(string $channelId, string $messageId, Message $payload): Message
@@ -173,6 +195,12 @@ class ChannelMessageTag extends TagAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
+                case 400:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 404:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 500:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
                 default:
                     throw new UnknownStatusCodeException('The server returned an unknown status code');
             }
@@ -187,6 +215,7 @@ class ChannelMessageTag extends TagAbstract
      * @param string $channelId
      * @param string $messageId
      * @return void
+     * @throws ErrorException
      * @throws ClientException
      */
     public function remove(string $channelId, string $messageId): void
@@ -212,6 +241,12 @@ class ChannelMessageTag extends TagAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
+                case 400:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 404:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 500:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
                 default:
                     throw new UnknownStatusCodeException('The server returned an unknown status code');
             }
@@ -226,6 +261,7 @@ class ChannelMessageTag extends TagAbstract
      * @param string $channelId
      * @param string $messageId
      * @return Message
+     * @throws ErrorException
      * @throws ClientException
      */
     public function crosspost(string $channelId, string $messageId): Message
@@ -252,6 +288,12 @@ class ChannelMessageTag extends TagAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
+                case 400:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 404:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 500:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
                 default:
                     throw new UnknownStatusCodeException('The server returned an unknown status code');
             }

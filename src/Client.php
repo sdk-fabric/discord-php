@@ -24,6 +24,14 @@ class Client extends ClientAbstract
         );
     }
 
+    public function user(): UserTag
+    {
+        return new UserTag(
+            $this->httpClient,
+            $this->parser
+        );
+    }
+
 
 
     public static function build(string $token): self

@@ -34,6 +34,7 @@ class ChannelTag extends TagAbstract
      *
      * @param string $channelId
      * @return Channel
+     * @throws ErrorException
      * @throws ClientException
      */
     public function get(string $channelId): Channel
@@ -59,6 +60,12 @@ class ChannelTag extends TagAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
+                case 400:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 404:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 500:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
                 default:
                     throw new UnknownStatusCodeException('The server returned an unknown status code');
             }
@@ -72,6 +79,7 @@ class ChannelTag extends TagAbstract
      *
      * @param string $channelId
      * @return array<Message>
+     * @throws ErrorException
      * @throws ClientException
      */
     public function getPins(string $channelId): array
@@ -97,6 +105,12 @@ class ChannelTag extends TagAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
+                case 400:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 404:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
+                case 500:
+                    throw new ErrorException($this->parser->parse($data, Error::class));
                 default:
                     throw new UnknownStatusCodeException('The server returned an unknown status code');
             }
