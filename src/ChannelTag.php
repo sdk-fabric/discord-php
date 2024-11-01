@@ -8,27 +8,12 @@ namespace SdkFabric\Discord;
 
 use GuzzleHttp\Exception\BadResponseException;
 use Sdkgen\Client\Exception\ClientException;
+use Sdkgen\Client\Exception\Payload;
 use Sdkgen\Client\Exception\UnknownStatusCodeException;
 use Sdkgen\Client\TagAbstract;
 
 class ChannelTag extends TagAbstract
 {
-    public function message(): ChannelMessageTag
-    {
-        return new ChannelMessageTag(
-            $this->httpClient,
-            $this->parser
-        );
-    }
-
-    public function reaction(): ChannelReactionTag
-    {
-        return new ChannelReactionTag(
-            $this->httpClient,
-            $this->parser
-        );
-    }
-
     /**
      * Get a channel by ID. Returns a channel object.
      *
@@ -44,6 +29,8 @@ class ChannelTag extends TagAbstract
         ]);
 
         $options = [
+            'headers' => [
+            ],
             'query' => $this->parser->query([
             ], [
             ]),
@@ -51,24 +38,36 @@ class ChannelTag extends TagAbstract
 
         try {
             $response = $this->httpClient->request('GET', $url, $options);
-            $data = (string) $response->getBody();
+            $body = $response->getBody();
 
-            return $this->parser->parse($data, Channel::class);
+            $data = $this->parser->parse((string) $body, Channel::class);
+
+            return $data;
         } catch (ClientException $e) {
             throw $e;
         } catch (BadResponseException $e) {
-            $data = (string) $e->getResponse()->getBody();
+            $body = $e->getResponse()->getBody();
+            $statusCode = $e->getResponse()->getStatusCode();
 
-            switch ($e->getResponse()->getStatusCode()) {
-                case 400:
-                    throw new ErrorException($this->parser->parse($data, Error::class));
-                case 404:
-                    throw new ErrorException($this->parser->parse($data, Error::class));
-                case 500:
-                    throw new ErrorException($this->parser->parse($data, Error::class));
-                default:
-                    throw new UnknownStatusCodeException('The server returned an unknown status code');
+            if ($statusCode === 400) {
+                $data = $this->parser->parse((string) $body, Error::class);
+
+                throw new ErrorException($data);
             }
+
+            if ($statusCode === 404) {
+                $data = $this->parser->parse((string) $body, Error::class);
+
+                throw new ErrorException($data);
+            }
+
+            if ($statusCode === 500) {
+                $data = $this->parser->parse((string) $body, Error::class);
+
+                throw new ErrorException($data);
+            }
+
+            throw new UnknownStatusCodeException('The server returned an unknown status code: ' . $statusCode);
         } catch (\Throwable $e) {
             throw new ClientException('An unknown error occurred: ' . $e->getMessage());
         }
@@ -89,6 +88,8 @@ class ChannelTag extends TagAbstract
         ]);
 
         $options = [
+            'headers' => [
+            ],
             'query' => $this->parser->query([
             ], [
             ]),
@@ -96,28 +97,41 @@ class ChannelTag extends TagAbstract
 
         try {
             $response = $this->httpClient->request('GET', $url, $options);
-            $data = (string) $response->getBody();
+            $body = $response->getBody();
 
-            return $this->parser->parse($data, Message::class, isArray: true);
+            $data = $this->parser->parse((string) $body, Message::class, isArray: true);
+
+            return $data;
         } catch (ClientException $e) {
             throw $e;
         } catch (BadResponseException $e) {
-            $data = (string) $e->getResponse()->getBody();
+            $body = $e->getResponse()->getBody();
+            $statusCode = $e->getResponse()->getStatusCode();
 
-            switch ($e->getResponse()->getStatusCode()) {
-                case 400:
-                    throw new ErrorException($this->parser->parse($data, Error::class));
-                case 404:
-                    throw new ErrorException($this->parser->parse($data, Error::class));
-                case 500:
-                    throw new ErrorException($this->parser->parse($data, Error::class));
-                default:
-                    throw new UnknownStatusCodeException('The server returned an unknown status code');
+            if ($statusCode === 400) {
+                $data = $this->parser->parse((string) $body, Error::class);
+
+                throw new ErrorException($data);
             }
+
+            if ($statusCode === 404) {
+                $data = $this->parser->parse((string) $body, Error::class);
+
+                throw new ErrorException($data);
+            }
+
+            if ($statusCode === 500) {
+                $data = $this->parser->parse((string) $body, Error::class);
+
+                throw new ErrorException($data);
+            }
+
+            throw new UnknownStatusCodeException('The server returned an unknown status code: ' . $statusCode);
         } catch (\Throwable $e) {
             throw new ClientException('An unknown error occurred: ' . $e->getMessage());
         }
     }
+
 
 
 }
