@@ -82,223 +82,223 @@ class Channel implements \JsonSerializable, \PSX\Record\RecordableInterface
     #[Key('default_forum_layout')]
     #[Description('')]
     protected ?int $defaultForumLayout = null;
-    public function setId(?string $id) : void
+    public function setId(?string $id): void
     {
         $this->id = $id;
     }
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }
-    public function setType(?int $type) : void
+    public function setType(?int $type): void
     {
         $this->type = $type;
     }
-    public function getType() : ?int
+    public function getType(): ?int
     {
         return $this->type;
     }
-    public function setGuildId(?string $guildId) : void
+    public function setGuildId(?string $guildId): void
     {
         $this->guildId = $guildId;
     }
-    public function getGuildId() : ?string
+    public function getGuildId(): ?string
     {
         return $this->guildId;
     }
-    public function setPosition(?int $position) : void
+    public function setPosition(?int $position): void
     {
         $this->position = $position;
     }
-    public function getPosition() : ?int
+    public function getPosition(): ?int
     {
         return $this->position;
     }
-    public function setName(?string $name) : void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
-    public function getName() : ?string
+    public function getName(): ?string
     {
         return $this->name;
     }
-    public function setTopic(?string $topic) : void
+    public function setTopic(?string $topic): void
     {
         $this->topic = $topic;
     }
-    public function getTopic() : ?string
+    public function getTopic(): ?string
     {
         return $this->topic;
     }
-    public function setNsfw(?bool $nsfw) : void
+    public function setNsfw(?bool $nsfw): void
     {
         $this->nsfw = $nsfw;
     }
-    public function getNsfw() : ?bool
+    public function getNsfw(): ?bool
     {
         return $this->nsfw;
     }
-    public function setLastMessageId(?string $lastMessageId) : void
+    public function setLastMessageId(?string $lastMessageId): void
     {
         $this->lastMessageId = $lastMessageId;
     }
-    public function getLastMessageId() : ?string
+    public function getLastMessageId(): ?string
     {
         return $this->lastMessageId;
     }
-    public function setBitrate(?int $bitrate) : void
+    public function setBitrate(?int $bitrate): void
     {
         $this->bitrate = $bitrate;
     }
-    public function getBitrate() : ?int
+    public function getBitrate(): ?int
     {
         return $this->bitrate;
     }
-    public function setUserLimit(?int $userLimit) : void
+    public function setUserLimit(?int $userLimit): void
     {
         $this->userLimit = $userLimit;
     }
-    public function getUserLimit() : ?int
+    public function getUserLimit(): ?int
     {
         return $this->userLimit;
     }
-    public function setRateLimitPerUser(?int $rateLimitPerUser) : void
+    public function setRateLimitPerUser(?int $rateLimitPerUser): void
     {
         $this->rateLimitPerUser = $rateLimitPerUser;
     }
-    public function getRateLimitPerUser() : ?int
+    public function getRateLimitPerUser(): ?int
     {
         return $this->rateLimitPerUser;
     }
-    public function setIcon(?string $icon) : void
+    public function setIcon(?string $icon): void
     {
         $this->icon = $icon;
     }
-    public function getIcon() : ?string
+    public function getIcon(): ?string
     {
         return $this->icon;
     }
-    public function setOwnerId(?string $ownerId) : void
+    public function setOwnerId(?string $ownerId): void
     {
         $this->ownerId = $ownerId;
     }
-    public function getOwnerId() : ?string
+    public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
-    public function setApplicationId(?string $applicationId) : void
+    public function setApplicationId(?string $applicationId): void
     {
         $this->applicationId = $applicationId;
     }
-    public function getApplicationId() : ?string
+    public function getApplicationId(): ?string
     {
         return $this->applicationId;
     }
-    public function setManaged(?bool $managed) : void
+    public function setManaged(?bool $managed): void
     {
         $this->managed = $managed;
     }
-    public function getManaged() : ?bool
+    public function getManaged(): ?bool
     {
         return $this->managed;
     }
-    public function setParentId(?string $parentId) : void
+    public function setParentId(?string $parentId): void
     {
         $this->parentId = $parentId;
     }
-    public function getParentId() : ?string
+    public function getParentId(): ?string
     {
         return $this->parentId;
     }
-    public function setLastPinTimestamp(?string $lastPinTimestamp) : void
+    public function setLastPinTimestamp(?string $lastPinTimestamp): void
     {
         $this->lastPinTimestamp = $lastPinTimestamp;
     }
-    public function getLastPinTimestamp() : ?string
+    public function getLastPinTimestamp(): ?string
     {
         return $this->lastPinTimestamp;
     }
-    public function setRtcRegion(?string $rtcRegion) : void
+    public function setRtcRegion(?string $rtcRegion): void
     {
         $this->rtcRegion = $rtcRegion;
     }
-    public function getRtcRegion() : ?string
+    public function getRtcRegion(): ?string
     {
         return $this->rtcRegion;
     }
-    public function setVideoQualityMode(?int $videoQualityMode) : void
+    public function setVideoQualityMode(?int $videoQualityMode): void
     {
         $this->videoQualityMode = $videoQualityMode;
     }
-    public function getVideoQualityMode() : ?int
+    public function getVideoQualityMode(): ?int
     {
         return $this->videoQualityMode;
     }
-    public function setMessageCount(?int $messageCount) : void
+    public function setMessageCount(?int $messageCount): void
     {
         $this->messageCount = $messageCount;
     }
-    public function getMessageCount() : ?int
+    public function getMessageCount(): ?int
     {
         return $this->messageCount;
     }
-    public function setMemberCount(?int $memberCount) : void
+    public function setMemberCount(?int $memberCount): void
     {
         $this->memberCount = $memberCount;
     }
-    public function getMemberCount() : ?int
+    public function getMemberCount(): ?int
     {
         return $this->memberCount;
     }
-    public function setDefaultAutoArchiveDuration(?int $defaultAutoArchiveDuration) : void
+    public function setDefaultAutoArchiveDuration(?int $defaultAutoArchiveDuration): void
     {
         $this->defaultAutoArchiveDuration = $defaultAutoArchiveDuration;
     }
-    public function getDefaultAutoArchiveDuration() : ?int
+    public function getDefaultAutoArchiveDuration(): ?int
     {
         return $this->defaultAutoArchiveDuration;
     }
-    public function setPermissions(?string $permissions) : void
+    public function setPermissions(?string $permissions): void
     {
         $this->permissions = $permissions;
     }
-    public function getPermissions() : ?string
+    public function getPermissions(): ?string
     {
         return $this->permissions;
     }
-    public function setFlags(?int $flags) : void
+    public function setFlags(?int $flags): void
     {
         $this->flags = $flags;
     }
-    public function getFlags() : ?int
+    public function getFlags(): ?int
     {
         return $this->flags;
     }
-    public function setTotalMessageSent(?int $totalMessageSent) : void
+    public function setTotalMessageSent(?int $totalMessageSent): void
     {
         $this->totalMessageSent = $totalMessageSent;
     }
-    public function getTotalMessageSent() : ?int
+    public function getTotalMessageSent(): ?int
     {
         return $this->totalMessageSent;
     }
-    public function setDefaultSortOrder(?int $defaultSortOrder) : void
+    public function setDefaultSortOrder(?int $defaultSortOrder): void
     {
         $this->defaultSortOrder = $defaultSortOrder;
     }
-    public function getDefaultSortOrder() : ?int
+    public function getDefaultSortOrder(): ?int
     {
         return $this->defaultSortOrder;
     }
-    public function setDefaultForumLayout(?int $defaultForumLayout) : void
+    public function setDefaultForumLayout(?int $defaultForumLayout): void
     {
         $this->defaultForumLayout = $defaultForumLayout;
     }
-    public function getDefaultForumLayout() : ?int
+    public function getDefaultForumLayout(): ?int
     {
         return $this->defaultForumLayout;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -331,7 +331,7 @@ class Channel implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('default_forum_layout', $this->defaultForumLayout);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

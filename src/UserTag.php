@@ -18,9 +18,10 @@ class UserTag extends TagAbstract
      * Returns the user object of the requester's account. For OAuth2, this requires the identify scope, which will return the object without an email, and optionally the email scope, which returns the object with an email.
      *
      * @return User
+     * @throws ErrorException
      * @throws ClientException
      */
-    public function get(): User
+    public function getCurrent(): User
     {
         $url = $this->parser->url('/users/@me', [
         ]);
@@ -37,7 +38,7 @@ class UserTag extends TagAbstract
             $response = $this->httpClient->request('GET', $url, $options);
             $body = $response->getBody();
 
-            $data = $this->parser->parse((string) $body, User::class);
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(User::class));
 
             return $data;
         } catch (ClientException $e) {
@@ -45,6 +46,59 @@ class UserTag extends TagAbstract
         } catch (BadResponseException $e) {
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
+
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
+
+                throw new ErrorException($data);
+            }
+
+            throw new UnknownStatusCodeException('The server returned an unknown status code: ' . $statusCode);
+        } catch (\Throwable $e) {
+            throw new ClientException('An unknown error occurred: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Returns a user object for a given user ID.
+     *
+     * @param string $userId
+     * @return User
+     * @throws ErrorException
+     * @throws ClientException
+     */
+    public function get(string $userId): User
+    {
+        $url = $this->parser->url('/users/:user_id', [
+            'user_id' => $userId,
+        ]);
+
+        $options = [
+            'headers' => [
+            ],
+            'query' => $this->parser->query([
+            ], [
+            ]),
+        ];
+
+        try {
+            $response = $this->httpClient->request('GET', $url, $options);
+            $body = $response->getBody();
+
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(User::class));
+
+            return $data;
+        } catch (ClientException $e) {
+            throw $e;
+        } catch (BadResponseException $e) {
+            $body = $e->getResponse()->getBody();
+            $statusCode = $e->getResponse()->getStatusCode();
+
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
+
+                throw new ErrorException($data);
+            }
 
             throw new UnknownStatusCodeException('The server returned an unknown status code: ' . $statusCode);
         } catch (\Throwable $e) {

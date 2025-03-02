@@ -48,7 +48,7 @@ class MessageTag extends TagAbstract
             $response = $this->httpClient->request('GET', $url, $options);
             $body = $response->getBody();
 
-            $data = $this->parser->parse((string) $body, Message::class, isArray: true);
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromType('array<Message>', __NAMESPACE__));
 
             return $data;
         } catch (ClientException $e) {
@@ -57,20 +57,8 @@ class MessageTag extends TagAbstract
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
 
-            if ($statusCode === 400) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 404) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 500) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }
@@ -109,7 +97,7 @@ class MessageTag extends TagAbstract
             $response = $this->httpClient->request('GET', $url, $options);
             $body = $response->getBody();
 
-            $data = $this->parser->parse((string) $body, Message::class);
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Message::class));
 
             return $data;
         } catch (ClientException $e) {
@@ -118,20 +106,8 @@ class MessageTag extends TagAbstract
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
 
-            if ($statusCode === 400) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 404) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 500) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }
@@ -171,7 +147,7 @@ class MessageTag extends TagAbstract
             $response = $this->httpClient->request('POST', $url, $options);
             $body = $response->getBody();
 
-            $data = $this->parser->parse((string) $body, Message::class);
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Message::class));
 
             return $data;
         } catch (ClientException $e) {
@@ -180,20 +156,8 @@ class MessageTag extends TagAbstract
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
 
-            if ($statusCode === 400) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 404) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 500) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }
@@ -235,7 +199,7 @@ class MessageTag extends TagAbstract
             $response = $this->httpClient->request('PATCH', $url, $options);
             $body = $response->getBody();
 
-            $data = $this->parser->parse((string) $body, Message::class);
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Message::class));
 
             return $data;
         } catch (ClientException $e) {
@@ -244,20 +208,8 @@ class MessageTag extends TagAbstract
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
 
-            if ($statusCode === 400) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 404) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 500) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }
@@ -302,20 +254,8 @@ class MessageTag extends TagAbstract
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
 
-            if ($statusCode === 400) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 404) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 500) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }
@@ -354,7 +294,7 @@ class MessageTag extends TagAbstract
             $response = $this->httpClient->request('POST', $url, $options);
             $body = $response->getBody();
 
-            $data = $this->parser->parse((string) $body, Message::class);
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Message::class));
 
             return $data;
         } catch (ClientException $e) {
@@ -363,20 +303,8 @@ class MessageTag extends TagAbstract
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
 
-            if ($statusCode === 400) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 404) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 500) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }
@@ -421,7 +349,7 @@ class MessageTag extends TagAbstract
             $response = $this->httpClient->request('GET', $url, $options);
             $body = $response->getBody();
 
-            $data = $this->parser->parse((string) $body, User::class, isArray: true);
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromType('array<User>', __NAMESPACE__));
 
             return $data;
         } catch (ClientException $e) {
@@ -430,20 +358,8 @@ class MessageTag extends TagAbstract
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
 
-            if ($statusCode === 400) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 404) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 500) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }
@@ -486,20 +402,8 @@ class MessageTag extends TagAbstract
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
 
-            if ($statusCode === 400) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 404) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 500) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }

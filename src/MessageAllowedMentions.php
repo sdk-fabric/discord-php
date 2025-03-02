@@ -33,54 +33,54 @@ class MessageAllowedMentions implements \JsonSerializable, \PSX\Record\Recordabl
     /**
      * @param array<string>|null $parse
      */
-    public function setParse(?array $parse) : void
+    public function setParse(?array $parse): void
     {
         $this->parse = $parse;
     }
     /**
      * @return array<string>|null
      */
-    public function getParse() : ?array
+    public function getParse(): ?array
     {
         return $this->parse;
     }
     /**
      * @param array<string>|null $roles
      */
-    public function setRoles(?array $roles) : void
+    public function setRoles(?array $roles): void
     {
         $this->roles = $roles;
     }
     /**
      * @return array<string>|null
      */
-    public function getRoles() : ?array
+    public function getRoles(): ?array
     {
         return $this->roles;
     }
     /**
      * @param array<string>|null $users
      */
-    public function setUsers(?array $users) : void
+    public function setUsers(?array $users): void
     {
         $this->users = $users;
     }
     /**
      * @return array<string>|null
      */
-    public function getUsers() : ?array
+    public function getUsers(): ?array
     {
         return $this->users;
     }
-    public function setRepliedUser(?bool $repliedUser) : void
+    public function setRepliedUser(?bool $repliedUser): void
     {
         $this->repliedUser = $repliedUser;
     }
-    public function getRepliedUser() : ?bool
+    public function getRepliedUser(): ?bool
     {
         return $this->repliedUser;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -90,7 +90,7 @@ class MessageAllowedMentions implements \JsonSerializable, \PSX\Record\Recordabl
         $record->put('replied_user', $this->repliedUser);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

@@ -34,77 +34,77 @@ class Message implements \JsonSerializable, \PSX\Record\RecordableInterface
     #[Key('enforce_nonce')]
     #[Description('')]
     protected ?bool $enforceNonce = null;
-    public function setContent(?string $content) : void
+    public function setContent(?string $content): void
     {
         $this->content = $content;
     }
-    public function getContent() : ?string
+    public function getContent(): ?string
     {
         return $this->content;
     }
-    public function setNonce(?string $nonce) : void
+    public function setNonce(?string $nonce): void
     {
         $this->nonce = $nonce;
     }
-    public function getNonce() : ?string
+    public function getNonce(): ?string
     {
         return $this->nonce;
     }
-    public function setTts(?bool $tts) : void
+    public function setTts(?bool $tts): void
     {
         $this->tts = $tts;
     }
-    public function getTts() : ?bool
+    public function getTts(): ?bool
     {
         return $this->tts;
     }
     /**
      * @param array<MessageEmbed>|null $embeds
      */
-    public function setEmbeds(?array $embeds) : void
+    public function setEmbeds(?array $embeds): void
     {
         $this->embeds = $embeds;
     }
     /**
      * @return array<MessageEmbed>|null
      */
-    public function getEmbeds() : ?array
+    public function getEmbeds(): ?array
     {
         return $this->embeds;
     }
-    public function setAllowedMentions(?MessageAllowedMentions $allowedMentions) : void
+    public function setAllowedMentions(?MessageAllowedMentions $allowedMentions): void
     {
         $this->allowedMentions = $allowedMentions;
     }
-    public function getAllowedMentions() : ?MessageAllowedMentions
+    public function getAllowedMentions(): ?MessageAllowedMentions
     {
         return $this->allowedMentions;
     }
-    public function setMessageReference(?string $messageReference) : void
+    public function setMessageReference(?string $messageReference): void
     {
         $this->messageReference = $messageReference;
     }
-    public function getMessageReference() : ?string
+    public function getMessageReference(): ?string
     {
         return $this->messageReference;
     }
-    public function setFlags(?int $flags) : void
+    public function setFlags(?int $flags): void
     {
         $this->flags = $flags;
     }
-    public function getFlags() : ?int
+    public function getFlags(): ?int
     {
         return $this->flags;
     }
-    public function setEnforceNonce(?bool $enforceNonce) : void
+    public function setEnforceNonce(?bool $enforceNonce): void
     {
         $this->enforceNonce = $enforceNonce;
     }
-    public function getEnforceNonce() : ?bool
+    public function getEnforceNonce(): ?bool
     {
         return $this->enforceNonce;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -118,7 +118,7 @@ class Message implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('enforce_nonce', $this->enforceNonce);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

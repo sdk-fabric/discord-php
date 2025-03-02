@@ -24,39 +24,39 @@ class MessageReference implements \JsonSerializable, \PSX\Record\RecordableInter
     #[Key('fail_if_not_exists')]
     #[Description('When sending, whether to error if the referenced message doesn\'t exist instead of sending as a normal (non-reply) message, default true')]
     protected ?bool $failIfNotExists = null;
-    public function setMessageId(?string $messageId) : void
+    public function setMessageId(?string $messageId): void
     {
         $this->messageId = $messageId;
     }
-    public function getMessageId() : ?string
+    public function getMessageId(): ?string
     {
         return $this->messageId;
     }
-    public function setChannelId(?string $channelId) : void
+    public function setChannelId(?string $channelId): void
     {
         $this->channelId = $channelId;
     }
-    public function getChannelId() : ?string
+    public function getChannelId(): ?string
     {
         return $this->channelId;
     }
-    public function setGuildId(?string $guildId) : void
+    public function setGuildId(?string $guildId): void
     {
         $this->guildId = $guildId;
     }
-    public function getGuildId() : ?string
+    public function getGuildId(): ?string
     {
         return $this->guildId;
     }
-    public function setFailIfNotExists(?bool $failIfNotExists) : void
+    public function setFailIfNotExists(?bool $failIfNotExists): void
     {
         $this->failIfNotExists = $failIfNotExists;
     }
-    public function getFailIfNotExists() : ?bool
+    public function getFailIfNotExists(): ?bool
     {
         return $this->failIfNotExists;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -66,7 +66,7 @@ class MessageReference implements \JsonSerializable, \PSX\Record\RecordableInter
         $record->put('fail_if_not_exists', $this->failIfNotExists);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

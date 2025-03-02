@@ -40,7 +40,7 @@ class ChannelTag extends TagAbstract
             $response = $this->httpClient->request('GET', $url, $options);
             $body = $response->getBody();
 
-            $data = $this->parser->parse((string) $body, Channel::class);
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Channel::class));
 
             return $data;
         } catch (ClientException $e) {
@@ -49,20 +49,58 @@ class ChannelTag extends TagAbstract
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
 
-            if ($statusCode === 400) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }
 
-            if ($statusCode === 404) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            throw new UnknownStatusCodeException('The server returned an unknown status code: ' . $statusCode);
+        } catch (\Throwable $e) {
+            throw new ClientException('An unknown error occurred: ' . $e->getMessage());
+        }
+    }
 
-                throw new ErrorException($data);
-            }
+    /**
+     * Update a channel's settings. Returns a channel on success, and a 400 BAD REQUEST on invalid parameters.
+     *
+     * @param string $channelId
+     * @param ChannelUpdate $payload
+     * @return Channel
+     * @throws ErrorException
+     * @throws ClientException
+     */
+    public function update(string $channelId, ChannelUpdate $payload): Channel
+    {
+        $url = $this->parser->url('/channels/:channel_id', [
+            'channel_id' => $channelId,
+        ]);
 
-            if ($statusCode === 500) {
-                $data = $this->parser->parse((string) $body, Error::class);
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/json',
+            ],
+            'query' => $this->parser->query([
+            ], [
+            ]),
+            'json' => $payload,
+        ];
+
+        try {
+            $response = $this->httpClient->request('PATCH', $url, $options);
+            $body = $response->getBody();
+
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Channel::class));
+
+            return $data;
+        } catch (ClientException $e) {
+            throw $e;
+        } catch (BadResponseException $e) {
+            $body = $e->getResponse()->getBody();
+            $statusCode = $e->getResponse()->getStatusCode();
+
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }
@@ -99,7 +137,7 @@ class ChannelTag extends TagAbstract
             $response = $this->httpClient->request('GET', $url, $options);
             $body = $response->getBody();
 
-            $data = $this->parser->parse((string) $body, Message::class, isArray: true);
+            $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromType('array<Message>', __NAMESPACE__));
 
             return $data;
         } catch (ClientException $e) {
@@ -108,20 +146,8 @@ class ChannelTag extends TagAbstract
             $body = $e->getResponse()->getBody();
             $statusCode = $e->getResponse()->getStatusCode();
 
-            if ($statusCode === 400) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 404) {
-                $data = $this->parser->parse((string) $body, Error::class);
-
-                throw new ErrorException($data);
-            }
-
-            if ($statusCode === 500) {
-                $data = $this->parser->parse((string) $body, Error::class);
+            if ($statusCode >= 0 && $statusCode <= 999) {
+                $data = $this->parser->parse((string) $body, \PSX\Schema\SchemaSource::fromClass(Error::class));
 
                 throw new ErrorException($data);
             }

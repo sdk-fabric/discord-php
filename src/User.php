@@ -49,135 +49,135 @@ class User implements \JsonSerializable, \PSX\Record\RecordableInterface
     #[Key('public_flags')]
     #[Description('')]
     protected ?int $publicFlags = null;
-    public function setId(?string $id) : void
+    public function setId(?string $id): void
     {
         $this->id = $id;
     }
-    public function getId() : ?string
+    public function getId(): ?string
     {
         return $this->id;
     }
-    public function setUsername(?string $username) : void
+    public function setUsername(?string $username): void
     {
         $this->username = $username;
     }
-    public function getUsername() : ?string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
-    public function setDiscriminator(?string $discriminator) : void
+    public function setDiscriminator(?string $discriminator): void
     {
         $this->discriminator = $discriminator;
     }
-    public function getDiscriminator() : ?string
+    public function getDiscriminator(): ?string
     {
         return $this->discriminator;
     }
-    public function setGlobalName(?string $globalName) : void
+    public function setGlobalName(?string $globalName): void
     {
         $this->globalName = $globalName;
     }
-    public function getGlobalName() : ?string
+    public function getGlobalName(): ?string
     {
         return $this->globalName;
     }
-    public function setAvatar(?string $avatar) : void
+    public function setAvatar(?string $avatar): void
     {
         $this->avatar = $avatar;
     }
-    public function getAvatar() : ?string
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
-    public function setBot(?bool $bot) : void
+    public function setBot(?bool $bot): void
     {
         $this->bot = $bot;
     }
-    public function getBot() : ?bool
+    public function getBot(): ?bool
     {
         return $this->bot;
     }
-    public function setSystem(?bool $system) : void
+    public function setSystem(?bool $system): void
     {
         $this->system = $system;
     }
-    public function getSystem() : ?bool
+    public function getSystem(): ?bool
     {
         return $this->system;
     }
-    public function setMfaEnabled(?bool $mfaEnabled) : void
+    public function setMfaEnabled(?bool $mfaEnabled): void
     {
         $this->mfaEnabled = $mfaEnabled;
     }
-    public function getMfaEnabled() : ?bool
+    public function getMfaEnabled(): ?bool
     {
         return $this->mfaEnabled;
     }
-    public function setBanner(?string $banner) : void
+    public function setBanner(?string $banner): void
     {
         $this->banner = $banner;
     }
-    public function getBanner() : ?string
+    public function getBanner(): ?string
     {
         return $this->banner;
     }
-    public function setAccentColor(?int $accentColor) : void
+    public function setAccentColor(?int $accentColor): void
     {
         $this->accentColor = $accentColor;
     }
-    public function getAccentColor() : ?int
+    public function getAccentColor(): ?int
     {
         return $this->accentColor;
     }
-    public function setLocale(?string $locale) : void
+    public function setLocale(?string $locale): void
     {
         $this->locale = $locale;
     }
-    public function getLocale() : ?string
+    public function getLocale(): ?string
     {
         return $this->locale;
     }
-    public function setVerified(?bool $verified) : void
+    public function setVerified(?bool $verified): void
     {
         $this->verified = $verified;
     }
-    public function getVerified() : ?bool
+    public function getVerified(): ?bool
     {
         return $this->verified;
     }
-    public function setEmail(?string $email) : void
+    public function setEmail(?string $email): void
     {
         $this->email = $email;
     }
-    public function getEmail() : ?string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
-    public function setFlags(?int $flags) : void
+    public function setFlags(?int $flags): void
     {
         $this->flags = $flags;
     }
-    public function getFlags() : ?int
+    public function getFlags(): ?int
     {
         return $this->flags;
     }
-    public function setPremiumType(?int $premiumType) : void
+    public function setPremiumType(?int $premiumType): void
     {
         $this->premiumType = $premiumType;
     }
-    public function getPremiumType() : ?int
+    public function getPremiumType(): ?int
     {
         return $this->premiumType;
     }
-    public function setPublicFlags(?int $publicFlags) : void
+    public function setPublicFlags(?int $publicFlags): void
     {
         $this->publicFlags = $publicFlags;
     }
-    public function getPublicFlags() : ?int
+    public function getPublicFlags(): ?int
     {
         return $this->publicFlags;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -199,7 +199,7 @@ class User implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('public_flags', $this->publicFlags);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

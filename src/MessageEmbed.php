@@ -23,55 +23,55 @@ class MessageEmbed implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?string $timestamp = null;
     #[Description('Color code of the embed')]
     protected ?int $color = null;
-    public function setTitle(?string $title) : void
+    public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
-    public function getTitle() : ?string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
-    public function setType(?string $type) : void
+    public function setType(?string $type): void
     {
         $this->type = $type;
     }
-    public function getType() : ?string
+    public function getType(): ?string
     {
         return $this->type;
     }
-    public function setDescription(?string $description) : void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
-    public function getDescription() : ?string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
-    public function setUrl(?string $url) : void
+    public function setUrl(?string $url): void
     {
         $this->url = $url;
     }
-    public function getUrl() : ?string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
-    public function setTimestamp(?string $timestamp) : void
+    public function setTimestamp(?string $timestamp): void
     {
         $this->timestamp = $timestamp;
     }
-    public function getTimestamp() : ?string
+    public function getTimestamp(): ?string
     {
         return $this->timestamp;
     }
-    public function setColor(?int $color) : void
+    public function setColor(?int $color): void
     {
         $this->color = $color;
     }
-    public function getColor() : ?int
+    public function getColor(): ?int
     {
         return $this->color;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -83,7 +83,7 @@ class MessageEmbed implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('color', $this->color);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }
