@@ -13,7 +13,7 @@ class MessageEmbed implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     #[Description('Title of embed')]
     protected ?string $title = null;
-    #[Description('Type of embed (always "rich" for webhook embeds)')]
+    #[Description('Type of embed (always rich for webhook embeds)')]
     protected ?string $type = null;
     #[Description('Description of embed')]
     protected ?string $description = null;
