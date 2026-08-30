@@ -1,9 +1,4 @@
 {
-  "typehub_user": "sdkfabric",
-  "typehub_document": "discord",
-  "github_user": "sdk-fabric",
-  "github_repository": "discord-php",
-
   "name": "sdkfabric/discord",
   "description": "Discord PHP SDK managed by SDK Fabric",
   "namespace": "SdkFabric\\Discord",
