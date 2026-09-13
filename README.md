@@ -20,19 +20,19 @@ $client = new \SdkFabric\Discord\Client::build('[access_token]');
 $response = $client->channel()->get('channel_id');
 
 // Update a channel's settings.
-$response = $client->channel()->update('channel_id', new ChannelUpdate());
+$response = $client->channel()->update('channel_id', new Channel_Update());
 
 // Delete a channel, or close a private message.
 $response = $client->channel()->delete('channel_id');
 
 // Returns all pinned messages in the channel as an array of message objects.
-$response = $client->channel()->getpins('channel_id');
+$response = $client->channel()->getPins('channel_id');
 
 // Create a new invite object for the channel.
-$response = $client->channel()->createinvite('channel_id', new ChannelInvite());
+$response = $client->channel()->createInvite('channel_id', new Channel_Invite());
 
 // Retrieves the messages in a channel.
-$response = $client->message()->getall('channel_id', 'around', 'before', 'after', 1);
+$response = $client->message()->getAll('channel_id', 'around', 'before', 'after', 1);
 
 // Retrieves a specific message in the channel.
 $response = $client->message()->get('channel_id', 'message_id');
@@ -49,12 +49,12 @@ $response = $client->message()->remove('channel_id', 'message_id');
 // Crosspost a message in an Announcement Channel to following channels.
 $response = $client->message()->crosspost('channel_id', 'message_id');
 
-$response = $client->message()->getreactionsbyemoji('channel_id', 'message_id', 'emoji', 1, 'after', 1);
+$response = $client->message()->getReactionsByEmoji('channel_id', 'message_id', 'emoji', 1, 'after', 1);
 
-$response = $client->message()->deleteallreactions('channel_id', 'message_id');
+$response = $client->message()->deleteAllReactions('channel_id', 'message_id');
 
 // Returns the user object of the requester's account.
-$response = $client->user()->getcurrent();
+$response = $client->user()->getCurrent();
 
 // Returns a user object for a given user ID.
 $response = $client->user()->get('user_id');
