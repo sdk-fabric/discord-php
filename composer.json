@@ -3,6 +3,14 @@
   "description": "Discord PHP SDK managed by SDK Fabric",
   "homepage": "https://sdk-fabric.org",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Christoph Kappestein",
+      "email": "christoph.kappestein@gmail.com",
+      "homepage": "https://chrisk.app/",
+      "role": "Developer"
+    }
+  ],
   "require": {
     "sdkgen/client": "^2.0"
   },
